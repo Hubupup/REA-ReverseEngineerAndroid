@@ -1,0 +1,1613 @@
+{
+  "upstream": {
+    "repository": "https://github.com/morluto/rea",
+    "snapshot": "6.8.0",
+    "note": "Generated from the Android-only worktree before restoration; classifications are retained decisions, not runtime capability claims."
+  },
+  "classifications": [
+    "current",
+    "support",
+    "historical",
+    "unsupported-locale",
+    "non-android",
+    "safe-delete"
+  ],
+  "entries": [
+    {
+      "path": "docs/android-system-images.md",
+      "classification": "current",
+      "action": "added",
+      "rationale": "Android system-image, partition, AVB, devicetree, and boot-chain support analysis added to the Android-only documentation surface."
+    },
+    {
+      "path": "docs/android-cross-language-libraries.md",
+      "classification": "current",
+      "action": "added",
+      "rationale": "Android cross-language library and resource guidance added without creating a public MCP family."
+    },
+    {
+      "path": "docs/agent-environments-quickstart.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/agent-environments.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/apple-application-analysis.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/apple-ips.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/browser-observation.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/browser-scenario-contract.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/desktop-applications.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/devicetree.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/dotnet-bundles.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/electron-fuses.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/electron-observation.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/erlang-beam.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/esp-image.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/evm-bytecode.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/firmware-analysis.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/fit-images.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-dol.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-dos.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-mips.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/ghidra-nativeaot.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-ppc.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-psp.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/ghidra-riscv.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/go-binaries.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/godot-pck.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/gpu-code-objects.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/harmony-analysis.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/hex-records.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/http3-capture-lab.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/il2cpp-metadata.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/javascript-application-graph.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-application-workflows.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-artifact-reconstruction.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-recovery.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-route-inventory.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-runtime-observation.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/javascript-runtime-reconciliation.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/kernel-modules.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/kuna-provider.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "docs/managed-code-analysis.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/migration-6.2.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/model-artifacts.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/node-sea.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/packet-captures.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/pcap-analysis.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/pe-certificates.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/pe-imports.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/pe-load-config.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/process-capture.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/python-packaged-applications.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/python-pyc.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/raw-binary.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/readme/README_ar.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_el.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_fa.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_id.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_it.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_ml.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_pl.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_ro.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_ru.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_th.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_tr.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_uk.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_ur-Latn.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/readme/README_vi.md",
+      "classification": "unsupported-locale",
+      "action": "removed",
+      "rationale": "This language is not one of the maintained README editions."
+    },
+    {
+      "path": "docs/recorded-crashes.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/reverse-engineering-tools.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/rust-binaries.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/signal-recordings.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/specs/2356-wasm-interface-comparison/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/2356-wasm-interface-comparison/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/2356-wasm-interface-comparison/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/2356-wasm-interface-comparison/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-build/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-build/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-build/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-build/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-export/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-export/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-export/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-export/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-prompt/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-prompt/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-prompt/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-prompt/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-serve/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-serve/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-serve/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/environment-serve/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/fidelity-compare/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/fidelity-compare/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/fidelity-compare/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/fidelity-compare/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/http-transport/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/http-transport/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/http-transport/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/http-transport/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-lines/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-lines/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-lines/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-lines/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-queries/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-queries/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-queries/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/list-queries/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/manifest-view/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/manifest-view/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/manifest-view/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/manifest-view/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/prefix-variance/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/prefix-variance/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/prefix-variance/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/prefix-variance/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/rich-captures/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/rich-captures/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/rich-captures/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/rich-captures/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-capture/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-capture/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-capture/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-capture/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-saved-values/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-saved-values/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-saved-values/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-saved-values/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-timing/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-timing/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-timing/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/scenario-timing/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-coverage/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-coverage/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-coverage/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-coverage/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-serve/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-serve/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-serve/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-serve/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-targets/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-targets/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-targets/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-targets/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-view/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-view/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-view/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-view/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-writes/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-writes/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-writes/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/state-writes/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/view-clock-spelling/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/view-clock-spelling/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/view-clock-spelling/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/view-clock-spelling/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-assigned-values/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-assigned-values/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-assigned-values/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-assigned-values/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-call-values/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-call-values/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-call-values/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-call-values/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-coverage/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-coverage/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-coverage/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-coverage/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-create-calls/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-create-calls/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-create-calls/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-create-calls/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-derived-values/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-derived-values/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-derived-values/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-derived-values/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-form-calls/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-form-calls/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-form-calls/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-form-calls/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-later-reads/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-later-reads/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-later-reads/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-later-reads/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-rules/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-rules/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-rules/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-rules/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-sorts-references-toggles/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-sorts-references-toggles/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-sorts-references-toggles/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-sorts-references-toggles/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-varied-calls/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-varied-calls/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-varied-calls/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-varied-calls/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-views/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-views/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-views/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/agent-environments/write-views/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/solidity/cbor-metadata/plan.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/solidity/cbor-metadata/spec.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/solidity/cbor-metadata/tasks.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/specs/solidity/cbor-metadata/verification.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/sqlite-databases.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "docs/uimage.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/unityfs.md",
+      "classification": "support",
+      "action": "merged",
+      "rationale": "Android-relevant cross-language or helper context is represented in android-cross-language-libraries.md or the native guide."
+    },
+    {
+      "path": "docs/verification/analysis-efficiency/mcp-integer-allocation.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/apple-ips-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/browser-saved-values-2026-10-26.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/browser-scenario-validation-2026-10-27.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/cli-json-lines-2026-10-23.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/electron-cancellation-2026-10-16.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/electron-ipc-listeners-2026-10-16.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/electron-native-once-2026-10-16.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/electron-shell-sync-2026-10-16.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/ghidra-dol-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/gpu-code-objects-2026-10-21.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/il2cpp-generic-instances-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-analysis-effects-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-assignment-influence-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-interruption-applicability-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-literal-byte-budget-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-module-references-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-native-handoff-identity-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-retained-facts-2026-10-15.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-route-inventory-2026-10-21.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-source-paths-json-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/javascript-window-options-2026-10-16.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/pe-imports-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/pe-load-config-2026-10-24.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/verification/web-bundle-paging-2026-10-26.md",
+      "classification": "historical",
+      "action": "retained-evidence",
+      "rationale": "Historical verification record retained without treating its technology as a current public capability."
+    },
+    {
+      "path": "docs/wasm-artifacts.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/web-network-captures.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/web-runtime.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/web-source-location.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "The page targets a non-Android platform or a provider surface that remains disabled in the public catalog."
+    },
+    {
+      "path": "docs/website-module-trace.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "docs/website-script-export.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "tests/fixtures/native-macos/archive-xml-encoding/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "tests/fixtures/native-macos/dyld-inventory/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "tests/fixtures/native-macos/lipo-same-cpu/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "tests/fixtures/native-macos/load-command-text-values/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "tests/fixtures/pcap/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored as Android support analysis; it does not add a public MCP family."
+    },
+    {
+      "path": "tests/fixtures/wasm/README.md",
+      "classification": "non-android",
+      "action": "removed",
+      "rationale": "No Android-specific usage or shared consumer was established."
+    },
+    {
+      "path": "third_party/evmole/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "third_party/pwndbg/LICENSE.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "third_party/pwndbg/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "third_party/pwntools/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "third_party/wabt/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "third_party/web-network-captures/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored because retained support modules still reference the source and licensing record."
+    },
+    {
+      "path": "website/AGENTS.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/aegis-login-code.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/calculator-and-dino.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/ctf-masked-squares.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/dx-ball-sound-pan.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/guide-examples.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/notion-clipboard.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/reverse-engineering-models.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/rl-environments.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/th04-bullet-ring.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/evidence/touhou-reconstruction-method.md",
+      "classification": "support",
+      "action": "historical-restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/figures.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/locales/README.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    },
+    {
+      "path": "website/style-guide.md",
+      "classification": "support",
+      "action": "restored",
+      "rationale": "Restored for Android website provenance or publishing support."
+    }
+  ]
+}

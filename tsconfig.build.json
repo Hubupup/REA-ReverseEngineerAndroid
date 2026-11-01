@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "types": ["node"]
+  },
+  "include": [
+    "src/main.ts",
+    "src/cli.ts",
+    "src/cliOutput.ts",
+    "src/cliBuiltinArguments.ts",
+    "src/mcpDoctor.ts"
+  ],
+  "exclude": [
+    "src/**/*.fixture.ts",
+    "src/**/*.test.ts",
+    "tests",
+    "dist",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "rea",
+  "description": "Reverse engineer Android apps with agents, from APK structure down to native libraries.",
+  "owner": {
+    "name": "morluto",
+    "url": "https://github.com/morluto"
+  },
+  "plugins": [
+    {
+      "name": "rea",
+      "description": "Reverse engineer Android apps with agents, from APK structure down to native libraries.",
+      "source": {
+        "source": "npm",
+        "package": "rea-agents",
+        "version": "6.8.0"
+      },
+      "category": "development"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "fork": "rea-android",
+  "upstream": {
+    "repository": "https://github.com/morluto/rea",
+    "snapshot": "6.8.0",
+    "baseline_note": "The original workspace snapshot had no Git metadata. This repository starts with the completed Android-only hard fork; select upstream changes manually by commit."
+  },
+  "allow": [
+    "src/android/**",
+    "src/adb/**",
+    "src/apkSignature/**",
+    "src/apktool/**",
+    "src/flutter/**",
+    "src/frida/**",
+    "src/ghidra/**",
+    "src/ida/**",
+    "src/jeb/**",
+    "src/server/EvidenceMcpServer*",
+    "src/server/register*Android*",
+    "src/server/register*Adb*",
+    "src/server/register*Apk*",
+    "src/server/register*Flutter*",
+    "src/server/register*Frida*",
+    "src/server/register*Jeb*",
+    "src/process/**",
+    "src/windows/**"
+  ],
+  "manual_review_required": [
+    "src/composition/**",
+    "src/contracts/**",
+    "src/domain/**",
+    "src/filesystem/**",
+    "src/main/**",
+    "src/server/**",
+    "docs/**",
+    "website/**",
+    "skills/**"
+  ],
+  "android_support_analysis": [
+    "src/go/**",
+    "src/javascript/**",
+    "src/pcap/**",
+    "src/python/**",
+    "src/rust/**",
+    "src/signals/**",
+    "src/sqlite/**"
+  ],
+  "disabled_public_surface": [
+    "src/apple/**",
+    "src/browser/**",
+    "src/cutter/**",
+    "src/dotnet/**",
+    "src/electron/**",
+    "src/evm/**",
+    "src/firmware/**",
+    "src/gpu/**",
+    "src/hopper/**",
+    "src/il2cpp/**",
+    "src/kuna/**",
+    "src/managed/**",
+    "src/model/**",
+    "src/wasm/**"
+  ]
+}

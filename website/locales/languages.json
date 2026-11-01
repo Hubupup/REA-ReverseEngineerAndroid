@@ -1,0 +1,56 @@
+[
+  {
+    "code": "en",
+    "name": "English",
+    "readme": "README.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "zh-CN",
+    "name": "简体中文",
+    "readme": "docs/readme/README_zh.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "zh-TW",
+    "name": "繁體中文",
+    "readme": "docs/readme/README_zh-TW.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "ja",
+    "name": "日本語",
+    "readme": "docs/readme/README_ja.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "ko",
+    "name": "한국어",
+    "readme": "docs/readme/README_ko.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "de",
+    "name": "Deutsch",
+    "readme": "docs/readme/README_de.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "es",
+    "name": "Español",
+    "readme": "docs/readme/README_es.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "fr",
+    "name": "Français",
+    "readme": "docs/readme/README_fr.md",
+    "dir": "ltr"
+  },
+  {
+    "code": "pt-BR",
+    "name": "Português (Brasil)",
+    "readme": "docs/readme/README_pt-BR.md",
+    "dir": "ltr"
+  }
+]
