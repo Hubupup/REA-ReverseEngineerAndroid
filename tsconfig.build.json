@@ -9,7 +9,9 @@
     "src/cli.ts",
     "src/cliOutput.ts",
     "src/cliBuiltinArguments.ts",
-    "src/mcpDoctor.ts"
+    "src/mcpDoctor.ts",
+    "src/composition/javascriptAnalysisWorkerProcess.ts",
+    "src/composition/webBundleAnalysisWorkerProcess.ts"
   ],
   "exclude": [
     "src/**/*.fixture.ts",

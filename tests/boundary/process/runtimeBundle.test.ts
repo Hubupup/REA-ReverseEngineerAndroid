@@ -7,30 +7,23 @@ import { describe, expect } from "vitest";
 import { bundleRuntime } from "../../../scripts/bundle-runtime.mjs";
 import { workspaceCliTest } from "../../support/cli/workspaceCliFixture.js";
 
-describe("CLI and MCP runtime bundles", () => {
-  workspaceCliTest(
-    "preserves module locations, lazy side effects, package resolution and worker entrypoints",
-    async ({ processes, workspace }) => {
-      await workspace.mkdir("dist/provider");
-      await workspace.mkdir("dist/composition");
-      await workspace.mkdir("dist/cli");
-      await workspace.mkdir("bridge");
-      await workspace.mkdir("node_modules/external-probe");
-      const files = {
-        "package.json": JSON.stringify({
-          type: "module",
-          imports: {
-            "#javascript-analysis-worker":
-              "./dist/composition/javascriptAnalysisWorkerProcess.js",
-          },
-        }),
-        "bridge/resource.txt": "bridge resource\n",
-        "node_modules/external-probe/package.json": JSON.stringify({
-          name: "external-probe",
-          main: "index.cjs",
-        }),
-        "node_modules/external-probe/index.cjs": 'module.exports = "external";',
-        "dist/provider/probe λ.js": `
+const runtimeBundleFiles = () => ({
+  "package.json": JSON.stringify({
+    type: "module",
+    imports: {
+      "#javascript-analysis-worker":
+        "./dist/composition/javascriptAnalysisWorkerProcess.js",
+      "#web-bundle-analysis-worker":
+        "./dist/composition/webBundleAnalysisWorkerProcess.js",
+    },
+  }),
+  "bridge/resource.txt": "bridge resource\n",
+  "node_modules/external-probe/package.json": JSON.stringify({
+    name: "external-probe",
+    main: "index.cjs",
+  }),
+  "node_modules/external-probe/index.cjs": 'module.exports = "external";',
+  "dist/provider/probe λ.js": `
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 globalThis.effects ??= [];
@@ -41,20 +34,22 @@ export const facts = {
   external: createRequire(import.meta.url)('external-probe'),
   worker: import.meta.resolve('#javascript-analysis-worker')
 };`,
-        "dist/lazy.js": `
+  "dist/lazy.js": `
 globalThis.effects.push('lazy');
 export const lazyUrl = import.meta.url;`,
-        "dist/composition/javascriptAnalysisWorkerProcess.js":
-          'process.stdout.write("worker-entry");',
-        "dist/generatedPackageMetadata.js":
-          'export const generatedPackageMetadata = { version: "1.0.0" };',
-        "dist/cli.js": 'export { facts, run } from "./main.js";',
-        "dist/cliBuiltinArguments.js": "export {};\n",
-        "dist/cliOutput.js": 'export { facts } from "./provider/probe λ.js";',
-        "dist/cli/cliResultOutput.js":
-          'export { facts } from "../provider/probe λ.js";',
-        "dist/mcpDoctor.js": 'export { run } from "./main.js";',
-        "dist/main.js": `
+  "dist/composition/javascriptAnalysisWorkerProcess.js":
+    'process.stdout.write("worker-entry");',
+  "dist/composition/webBundleAnalysisWorkerProcess.js":
+    'process.stdout.write("web-worker-entry");',
+  "dist/generatedPackageMetadata.js":
+    'export const generatedPackageMetadata = { version: "1.0.0" };',
+  "dist/cli.js": 'export { facts, run } from "./main.js";',
+  "dist/cliBuiltinArguments.js": "export {};\n",
+  "dist/cliOutput.js": 'export { facts } from "./provider/probe λ.js";',
+  "dist/cli/cliResultOutput.js":
+    'export { facts } from "../provider/probe λ.js";',
+  "dist/mcpDoctor.js": 'export { run } from "./main.js";',
+  "dist/main.js": `
 import { facts } from './provider/probe λ.js';
 import { generatedPackageMetadata } from './generatedPackageMetadata.js';
 export { facts };
@@ -69,7 +64,18 @@ export const run = async () => {
     workerOutput: execFileSync(process.execPath, [fileURLToPath(facts.worker)], { encoding: 'utf8' })
   };
 };`,
-      };
+});
+
+describe("CLI and MCP runtime bundles", () => {
+  workspaceCliTest(
+    "preserves module locations, lazy side effects, package resolution and worker entrypoints",
+    async ({ processes, workspace }) => {
+      await workspace.mkdir("dist/provider");
+      await workspace.mkdir("dist/composition");
+      await workspace.mkdir("dist/cli");
+      await workspace.mkdir("bridge");
+      await workspace.mkdir("node_modules/external-probe");
+      const files = runtimeBundleFiles();
       for (const [path, contents] of Object.entries(files))
         await workspace.write(path, contents);
       const invoke = async (entry: string) => {
@@ -111,10 +117,12 @@ export const run = async () => {
         afterLazy: ["provider", "main", "lazy"],
         workerOutput: "worker-entry",
       });
-      for (const [path, contents] of Object.entries(files))
+      for (const [path, contents] of Object.entries(files)) {
+        if (path.startsWith("dist/composition/")) continue;
         expect(await readFile(join(workspace.root, path), "utf8")).toBe(
           contents,
         );
+      }
       expect(
         (await readdir(join(workspace.root, "dist/mcp"))).length,
       ).toBeGreaterThan(1);

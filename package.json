@@ -50,6 +50,8 @@
     "dist/mcp",
     "dist/cli-runtime",
     "dist/generatedPackageMetadata.js",
+    "dist/composition/javascriptAnalysisWorkerProcess.js",
+    "dist/composition/webBundleAnalysisWorkerProcess.js",
     "dist/recordedMcpCatalog.js",
     "dist/catalogIdentity.js",
     "dist/mcp-catalog.json",

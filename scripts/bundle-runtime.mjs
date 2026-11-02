@@ -29,6 +29,20 @@ export const bundleRuntime = async (root) => {
         mcpDoctor: "mcpDoctor.js",
       },
     ],
+    [
+      "composition",
+      {
+        javascriptAnalysisWorkerProcess:
+          "composition/javascriptAnalysisWorkerProcess.js",
+      },
+    ],
+    [
+      "composition",
+      {
+        webBundleAnalysisWorkerProcess:
+          "composition/webBundleAnalysisWorkerProcess.js",
+      },
+    ],
   ]) {
     const bundle = await rolldown({
       input: Object.fromEntries(
@@ -129,7 +143,7 @@ export const bundleRuntime = async (root) => {
         paths: (id) =>
           isMetadataModule(id) ? "../generatedPackageMetadata.js" : id,
         minifyInternalExports: directory === "mcp",
-        codeSplitting: true,
+        codeSplitting: directory !== "composition",
         strictExecutionOrder: true,
         minify: false,
         sourcemap: false,
