@@ -5,6 +5,8 @@ import { join } from "node:path";
 import { defineConfig } from "vitest/config";
 import { parseCLI } from "vitest/node";
 import {
+  ANDROID_TEST_INCLUDES,
+  ANDROID_TEST_EXCLUDES,
   BUILT_TEST_PROJECTS,
   SOURCE_TEST_PROJECTS,
 } from "./scripts/lib/test-projects.mjs";
@@ -32,6 +34,7 @@ const { options: testOptions } = parseCLI(
 );
 const COVERAGE_ENABLED = testOptions.coverage?.enabled === true;
 const COVERAGE_SHARD = testOptions.shard !== undefined;
+const ANDROID_ONLY = process.env.REA_ANDROID_CI === "1";
 // Keep local and CI concurrency bounded by the runner rather than command locks.
 const MAX_TEST_WORKERS = Math.min(2, availableParallelism());
 
@@ -119,12 +122,24 @@ const projects = TEST_PROJECTS.map((project) => {
     PROJECT_POLICIES[project.name as keyof typeof PROJECT_POLICIES];
   if (!policy)
     throw new Error(`Missing test runner policy for ${project.name}`);
+  const androidInclude =
+    ANDROID_TEST_INCLUDES[project.name as keyof typeof ANDROID_TEST_INCLUDES] ??
+    [];
+  const include = ANDROID_ONLY ? androidInclude : project.include;
+  const exclude = [
+    ...(project.exclude ?? []),
+    ...(ANDROID_ONLY
+      ? (ANDROID_TEST_EXCLUDES[
+          project.name as keyof typeof ANDROID_TEST_EXCLUDES
+        ] ?? [])
+      : []),
+  ];
   return {
     extends: true as const,
     test: {
       name: project.name,
-      include: [...project.include],
-      ...(project.exclude ? { exclude: [...project.exclude] } : {}),
+      include: [...include],
+      ...(exclude.length > 0 ? { exclude } : {}),
       isolate: project.isolate !== false,
       ...policy,
     },

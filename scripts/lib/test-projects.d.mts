@@ -8,4 +8,6 @@ export interface TestProjectDefinition {
 
 export const SOURCE_TEST_PROJECTS: readonly TestProjectDefinition[];
 export const BUILT_TEST_PROJECTS: readonly TestProjectDefinition[];
+export const ANDROID_TEST_INCLUDES: Readonly<Record<string, readonly string[]>>;
+export const ANDROID_TEST_EXCLUDES: Readonly<Record<string, readonly string[]>>;
 export function projectForTest(testPath: string): TestProjectDefinition;

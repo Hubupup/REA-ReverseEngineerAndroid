@@ -1,10 +1,22 @@
 import { execFileSync } from "node:child_process";
 import { appendFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { isAbsolute, join, relative, resolve, sep } from "node:path";
+import {
+  isAbsolute,
+  join,
+  matchesGlob,
+  relative,
+  resolve,
+  sep,
+} from "node:path";
 
 import { z } from "zod";
 
 import { compareTestSelection } from "./test-selection.mjs";
+import {
+  ANDROID_TEST_EXCLUDES,
+  ANDROID_TEST_INCLUDES,
+  projectForTest,
+} from "../lib/test-projects.mjs";
 
 const root = process.cwd();
 const historyDirectory = join(root, ".cache/ci-test-history");
@@ -55,17 +67,19 @@ const passed =
   groupResults.every((state) => state === "success") &&
   process.env.MERGE_RESULT === "success" &&
   report.success;
-// Successful shards and merged reports must account for the complete portable
+// Successful shards and merged reports must account for the configured
 // inventory. Coverage thresholds alone cannot prove that every file ran.
 const verifyInventory = process.env.CI_VERIFY_TEST_INVENTORY === "true";
 const expected =
   verifyInventory || process.env.CI_TEST_SELECTION
-    ? execFileSync("git", ["ls-files", "-z", "--", "src", "tests"], {
-        encoding: "utf8",
-        maxBuffer: 8 * 1024 * 1024,
-      })
-        .split("\0")
-        .filter((path) => path.endsWith(".test.ts"))
+    ? androidInventory(
+        execFileSync("git", ["ls-files", "-z", "--", "src", "tests"], {
+          encoding: "utf8",
+          maxBuffer: 8 * 1024 * 1024,
+        })
+          .split("\0")
+          .filter((path) => path.endsWith(".test.ts")),
+      )
     : [];
 let selection;
 if (process.env.CI_TEST_SELECTION) {
@@ -160,4 +174,18 @@ if (passed) {
       files: files.map(({ name, durationMs }) => ({ name, durationMs })),
     }),
   );
+}
+
+function androidInventory(paths) {
+  if (process.env.REA_ANDROID_CI !== "1") return paths;
+  return paths.filter((path) => {
+    const project = projectForTest(path);
+    const included = (ANDROID_TEST_INCLUDES[project.name] ?? []).some(
+      (pattern) => matchesGlob(path, pattern),
+    );
+    const excluded = (ANDROID_TEST_EXCLUDES[project.name] ?? []).some(
+      (pattern) => matchesGlob(path, pattern),
+    );
+    return included && !excluded;
+  });
 }

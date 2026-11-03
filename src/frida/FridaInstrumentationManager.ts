@@ -1062,6 +1062,13 @@ export class FridaInstrumentationManager implements FridaInstrumentationPort {
     data: Buffer | null,
   ): void {
     const payload = message.type === "send" ? message.payload : undefined;
+    const metadata = message as Message & {
+      readonly description?: string;
+      readonly stack?: string;
+      readonly fileName?: string;
+      readonly lineNumber?: number;
+      readonly columnNumber?: number;
+    };
     const secrets = [managed.remote?.token, managed.remote?.certificate].filter(
       (value): value is string => value !== undefined && value.length > 0,
     );
@@ -1126,22 +1133,26 @@ export class FridaInstrumentationManager implements FridaInstrumentationPort {
       secrets,
     );
     const description =
-      message.type !== "error" || message.description === undefined
+      metadata.description === undefined
         ? undefined
         : boundedRedactedString(
-            message.description,
+            metadata.description,
             MAX_MESSAGE_TEXT_BYTES,
             secrets,
           );
     const stack =
-      message.type !== "error" || message.stack === undefined
-        ? undefined
-        : boundedRedactedString(message.stack, MAX_MESSAGE_TEXT_BYTES, secrets);
-    const fileName =
-      message.type !== "error" || message.fileName === undefined
+      metadata.stack === undefined
         ? undefined
         : boundedRedactedString(
-            message.fileName,
+            metadata.stack,
+            MAX_MESSAGE_TEXT_BYTES,
+            secrets,
+          );
+    const fileName =
+      metadata.fileName === undefined
+        ? undefined
+        : boundedRedactedString(
+            metadata.fileName,
             MAX_MESSAGE_TEXT_BYTES,
             secrets,
           );
@@ -1181,16 +1192,16 @@ export class FridaInstrumentationManager implements FridaInstrumentationPort {
             ...(fileName.truncated ? { file_name_truncated: true } : {}),
           }),
       ...(message.type === "error" &&
-      typeof message.lineNumber === "number" &&
-      Number.isSafeInteger(message.lineNumber) &&
-      message.lineNumber >= 0
-        ? { line_number: message.lineNumber }
+      typeof metadata.lineNumber === "number" &&
+      Number.isSafeInteger(metadata.lineNumber) &&
+      metadata.lineNumber >= 0
+        ? { line_number: metadata.lineNumber }
         : {}),
       ...(message.type === "error" &&
-      typeof message.columnNumber === "number" &&
-      Number.isSafeInteger(message.columnNumber) &&
-      message.columnNumber >= 0
-        ? { column_number: message.columnNumber }
+      typeof metadata.columnNumber === "number" &&
+      Number.isSafeInteger(metadata.columnNumber) &&
+      metadata.columnNumber >= 0
+        ? { column_number: metadata.columnNumber }
         : {}),
       ...binaryResult,
     };

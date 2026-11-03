@@ -13,6 +13,8 @@ Use REA Android only for shipped Android artifacts and requested Android runtime
 
 Use the connected server's actual `tools/list`; the default catalog contains the complete Android-only surface. If tools are absent, read [Android applications](references/android-applications.md). Do not run setup before every investigation.
 
+If the client registration or shipped runtime is missing, repair it with `npx rea-agents@latest setup`.
+
 REA never installs Java, JADX, ADB, Apktool, Ghidra, IDA, JEB, or Frida. Use the caller's existing installations and report missing prerequisites as unavailable capabilities.
 
 ## Route The Target

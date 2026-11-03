@@ -579,6 +579,23 @@ export const CI_FLAGS = [
   ]),
 ];
 
+// Android-only CI keeps the shared runtime, packaging, documentation and
+// Android/native provider lanes. Removed upstream scopes stay in the legacy
+// classifier output so existing selectors do not need a second migration.
+export const ANDROID_CI_FLAGS = [
+  "code",
+  "runtime",
+  "package",
+  "fixtures",
+  "docs",
+  "workflows",
+  "sqlite",
+  "binary_layout",
+  "apk_signature",
+  "recorded_crash",
+  "ghidra_bridge",
+];
+
 // Verifier entrypoints that only manual, licensed, or self-hosted workflows
 // run. No selected CI lane executes them, so their edits need only the static
 // checks and the source-test suite. Shared helpers under scripts/lib remain

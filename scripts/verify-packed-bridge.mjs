@@ -2,6 +2,8 @@ import { GHIDRA_BRIDGE_SOURCES } from "../src/ghidra/GhidraBridgeSources.ts";
 
 const packedHopperBridge = "package/bridge/hopper_bridge.py";
 const packedCutterBridge = "package/bridge/cutter/rea_bridge.py";
+const packedAndroidBridge = "package/bridge/android/ReaJadxBridge.java";
+const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
 
 /** Check shipped bridge files; real-provider lanes verify runtime behavior. */
 export async function verifyPackedBridge({ tarball, packedFiles, commands }) {
@@ -12,15 +14,24 @@ export async function verifyPackedBridge({ tarball, packedFiles, commands }) {
   ) {
     throw new Error("package contained generated Python bytecode");
   }
-  for (const path of [
-    packedHopperBridge,
-    packedCutterBridge,
-    ...Object.values(GHIDRA_BRIDGE_SOURCES).map(
-      (name) => `package/bridge/ghidra/${name}`,
-    ),
-  ]) {
+  const requiredBridgeFiles = ANDROID_ONLY
+    ? [
+        packedAndroidBridge,
+        ...Object.values(GHIDRA_BRIDGE_SOURCES).map(
+          (name) => `package/bridge/ghidra/${name}`,
+        ),
+      ]
+    : [
+        packedHopperBridge,
+        packedCutterBridge,
+        ...Object.values(GHIDRA_BRIDGE_SOURCES).map(
+          (name) => `package/bridge/ghidra/${name}`,
+        ),
+      ];
+  for (const path of requiredBridgeFiles) {
     if (!packedFiles.includes(path)) throw new Error(`package omitted ${path}`);
   }
+  if (ANDROID_ONLY) return;
   // Read the packed source without extracting into the caller's leased root.
   // Only the interpreter's standard library is needed; caller-local modules
   // and site startup hooks must not replace the parser or execute here.

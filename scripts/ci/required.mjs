@@ -1,4 +1,4 @@
-import { CI_FLAGS } from "./scopes.mjs";
+import { ANDROID_CI_FLAGS } from "./scopes.mjs";
 import { recordQualification } from "./qualification.mjs";
 
 const jobs = JSON.parse(process.env.CI_JOBS);
@@ -7,14 +7,16 @@ if (!["fast", "full", "reused"].includes(outputs?.tier))
   throw new Error(
     "CI classification requires a valid tier: fast, full, or reused",
   );
-const invalidFlags = CI_FLAGS.filter(
+const invalidFlags = ANDROID_CI_FLAGS.filter(
   (flag) => outputs[flag] !== "true" && outputs[flag] !== "false",
 );
 if (invalidFlags.length)
   throw new Error(
     `CI classification requires explicit true/false scope outputs: ${invalidFlags.join(", ")}`,
   );
-const selectedScopes = CI_FLAGS.filter((flag) => outputs[flag] === "true");
+const selectedScopes = ANDROID_CI_FLAGS.filter(
+  (flag) => outputs[flag] === "true",
+);
 const reused = outputs.tier === "reused";
 if (
   reused &&
@@ -26,7 +28,10 @@ if (
   throw new Error(
     "Reused qualification requires a scheduled admission receipt and no selected lanes",
   );
-if (outputs.tier === "full" && selectedScopes.length !== CI_FLAGS.length)
+if (
+  outputs.tier === "full" &&
+  selectedScopes.length !== ANDROID_CI_FLAGS.length
+)
   throw new Error("Full qualification requires every canonical CI scope");
 const required = reused ? ["changes"] : ["changes", "static", "test"];
 if (outputs.tier === "full") required.push("static-deep");
@@ -36,15 +41,16 @@ const lanes = {
     "test-shard",
     ...(outputs.tier === "fast" ? ["test-source"] : []),
   ],
-  reverse_tools: ["reverse-tools-quality"],
   runtime: ["windows-native-build", "package-e2e"],
-  package: ["windows-curated"],
+  package: [],
   sqlite: ["sqlite-runtime"],
-  apple: ["apple-artifacts"],
   fixtures: ["conformance-fixtures"],
-  readiness: ["reconstruction-readiness"],
   docs: ["docs"],
   workflows: ["static"],
+  binary_layout: ["binary_layout"],
+  apk_signature: ["apk_signature"],
+  recorded_crash: ["recorded_crash"],
+  ghidra_bridge: ["ghidra_bridge"],
 };
 for (const scope of selectedScopes) required.push(...(lanes[scope] ?? [scope]));
 const failed = [...new Set(required)].filter(

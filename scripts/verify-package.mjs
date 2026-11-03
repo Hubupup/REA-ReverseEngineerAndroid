@@ -6,7 +6,10 @@ import { TOOL_CONTRACTS } from "../dist/contracts/toolContracts.js";
 import { PRODUCT_IDENTITY } from "../dist/identity.js";
 import { resolveMcpStartupBudgets } from "../dist/config/mcpStartupBudgets.js";
 import * as prompts from "./verify-package-prompts.mjs";
-import { verifyPackageArtifactAndElectron } from "./verify-package-artifact.mjs";
+import {
+  verifyPackageArtifact,
+  verifyPackageArtifactAndElectron,
+} from "./verify-package-artifact.mjs";
 import { verifyPackageCapabilitiesAndSearch } from "./verify-package-capabilities.mjs";
 import { verifyPackageDiscovery } from "./verify-package-discovery.mjs";
 import { verifyPackageEnvironment } from "./verify-package-environment.mjs";
@@ -33,6 +36,7 @@ import {
   profileMcpModuleLoading,
 } from "./lib/mcp-startup-probe.mjs";
 
+const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
 const root = process.cwd();
 const retentionDirectory = process.env.REA_VERIFIED_PACKAGE_DIRECTORY;
 const verifierRun = createVerifierRun();
@@ -61,6 +65,40 @@ const runStage = async (name, action) => {
     `[verify:package] ${name}: complete (${Math.round(performance.now() - started)} ms)\n`,
   );
   return result;
+};
+
+const verifyAndroidPackageDiscovery = async ({
+  commands,
+  cli,
+  environment,
+}) => {
+  const help = await commands.run(cli, ["--help"], environment);
+  const missingCommands = [
+    "doctor",
+    "extract-artifact",
+    "inspect-artifact",
+    "setup",
+    "uninstall",
+  ].filter((command) => !help.includes(command));
+  if (missingCommands.length > 0)
+    throw new Error(
+      `packaged Android CLI omitted commands: ${missingCommands.join(", ")}`,
+    );
+  const doctorExecution = await commands.runWithStatus(
+    cli,
+    ["doctor", "--json"],
+    environment,
+  );
+  if (![0, 1].includes(doctorExecution.status))
+    throw new Error(
+      `packaged Android doctor failed with exit ${doctorExecution.status}`,
+    );
+  const doctor = JSON.parse(doctorExecution.stdout);
+  if (!Array.isArray(doctor.checks))
+    throw new Error("packaged Android doctor omitted its check inventory");
+  await commands.run(cli, ["setup", "--help"], environment);
+  await commands.run(cli, ["uninstall", "--help"], environment);
+  return { supportedSetupHost: false, hopperSetupSupported: false };
 };
 
 await withVerifierCleanup(async () => {
@@ -147,31 +185,42 @@ await withVerifierCleanup(async () => {
       packageName: PRODUCT_IDENTITY.packageName,
     }),
   );
-  const { supportedSetupHost, hopperSetupSupported } = await runStage(
-    "package discovery",
+  const setupSupport = ANDROID_ONLY
+    ? await runStage("Android package discovery", () =>
+        verifyAndroidPackageDiscovery({
+          commands,
+          cli,
+          environment: environmentData.environment,
+        }),
+      )
+    : await runStage("package discovery", () =>
+        verifyPackageDiscovery({
+          commands,
+          cli,
+          environment: environmentData.environment,
+        }),
+      );
+  const { artifactArchive } = await runStage(
+    ANDROID_ONLY ? "artifact CLI" : "artifact and Electron CLI",
     () =>
-      verifyPackageDiscovery({
+      (ANDROID_ONLY ? verifyPackageArtifact : verifyPackageArtifactAndElectron)(
+        {
+          commands,
+          cli,
+          workspace,
+          environment: environmentData.environment,
+        },
+      ),
+  );
+  if (!ANDROID_ONLY)
+    await runStage("managed analysis CLI", () =>
+      verifyManaged({
         commands,
         cli,
+        workspace,
         environment: environmentData.environment,
       }),
-  );
-  const { artifactArchive } = await runStage("artifact and Electron CLI", () =>
-    verifyPackageArtifactAndElectron({
-      commands,
-      cli,
-      workspace,
-      environment: environmentData.environment,
-    }),
-  );
-  await runStage("managed analysis CLI", () =>
-    verifyManaged({
-      commands,
-      cli,
-      workspace,
-      environment: environmentData.environment,
-    }),
-  );
+    );
   await runStage("unknown provider CLI", () =>
     verifyUnknownProvider({
       commands,
@@ -179,20 +228,22 @@ await withVerifierCleanup(async () => {
       environment: environmentData.environment,
     }),
   );
-  await runStage("platform CLI", () =>
-    verifyPackagePlatform({
-      commands,
-      cli,
-      environment: environmentData.environment,
-    }),
-  );
-  await runStage("capabilities and search CLI", () =>
-    verifyPackageCapabilitiesAndSearch({
-      commands,
-      cli,
-      environment: environmentData.environment,
-    }),
-  );
+  if (!ANDROID_ONLY) {
+    await runStage("platform CLI", () =>
+      verifyPackagePlatform({
+        commands,
+        cli,
+        environment: environmentData.environment,
+      }),
+    );
+    await runStage("capabilities and search CLI", () =>
+      verifyPackageCapabilitiesAndSearch({
+        commands,
+        cli,
+        environment: environmentData.environment,
+      }),
+    );
+  }
   await runStage("evidence CLI", () =>
     verifyPackageEvidence({
       commands,
@@ -202,24 +253,25 @@ await withVerifierCleanup(async () => {
       environment: environmentData.environment,
     }),
   );
-  await runStage("setup and uninstall CLI", () =>
-    verifyPackageSetup({
-      commands,
-      cli,
-      packageRunnerCli,
-      environment: environmentData.environment,
-      home: environmentData.home,
-      npxLog: environmentData.npxLog,
-      claudeConfig: environmentData.claudeConfig,
-      codexConfig: environmentData.codexConfig,
-      cursorConfig: environmentData.cursorConfig,
-      codexTarget: environmentData.codexTarget,
-      cursorTarget: environmentData.cursorTarget,
-      supportedSetupHost,
-      hopperSetupSupported,
-      root,
-    }),
-  );
+  if (!ANDROID_ONLY)
+    await runStage("setup and uninstall CLI", () =>
+      verifyPackageSetup({
+        commands,
+        cli,
+        packageRunnerCli,
+        environment: environmentData.environment,
+        home: environmentData.home,
+        npxLog: environmentData.npxLog,
+        claudeConfig: environmentData.claudeConfig,
+        codexConfig: environmentData.codexConfig,
+        cursorConfig: environmentData.cursorConfig,
+        codexTarget: environmentData.codexTarget,
+        cursorTarget: environmentData.cursorTarget,
+        supportedSetupHost: setupSupport.supportedSetupHost,
+        hopperSetupSupported: setupSupport.hopperSetupSupported,
+        root,
+      }),
+    );
   const extractedDirectory = join(workspace, "extracted-plugin");
   await mkdir(extractedDirectory);
   await commands.exec("tar", ["-xzf", tarball, "-C", extractedDirectory]);
@@ -236,27 +288,29 @@ await withVerifierCleanup(async () => {
   );
   report = {
     cli: true,
-    analysisCli: true,
+    analysisCli: !ANDROID_ONLY,
     artifactCli: true,
-    managedCli: true,
-    managedReconstructionCli: true,
-    managedNativeVerificationCli: true,
-    managedApplicationGraphCli: true,
+    managedCli: !ANDROID_ONLY,
+    managedReconstructionCli: !ANDROID_ONLY,
+    managedNativeVerificationCli: !ANDROID_ONLY,
+    managedApplicationGraphCli: !ANDROID_ONLY,
     evidenceCli: true,
     incurMcpCommand: PRODUCT_IDENTITY.mcpCommand,
     lifecycleScriptsRequired: false,
-    doctor: "platform-appropriate",
-    setup: supportedSetupHost
-      ? "planned-then-idempotent"
-      : "unsupported-host-rejected",
-    setupPlanReadOnly: supportedSetupHost,
-    existingHopperPreserved: supportedSetupHost,
-    clients: supportedSetupHost ? 4 : 0,
-    backupReadback: supportedSetupHost,
-    failureRecovery: supportedSetupHost,
-    configSymlinkLifecycle: supportedSetupHost,
-    skill: supportedSetupHost,
-    skillReferences: supportedSetupHost,
+    doctor: ANDROID_ONLY ? "android-surface-checked" : "platform-appropriate",
+    setup: ANDROID_ONLY
+      ? "android-surface-checked"
+      : setupSupport.supportedSetupHost
+        ? "planned-then-idempotent"
+        : "unsupported-host-rejected",
+    setupPlanReadOnly: setupSupport.supportedSetupHost,
+    existingHopperPreserved: setupSupport.supportedSetupHost,
+    clients: setupSupport.supportedSetupHost ? 4 : 0,
+    backupReadback: setupSupport.supportedSetupHost,
+    failureRecovery: setupSupport.supportedSetupHost,
+    configSymlinkLifecycle: setupSupport.supportedSetupHost,
+    skill: setupSupport.supportedSetupHost,
+    skillReferences: setupSupport.supportedSetupHost,
     repositorySkill,
     mcpTools: TOOL_CONTRACTS.length,
     mcpPrompts: prompts.names.length,
@@ -265,7 +319,7 @@ await withVerifierCleanup(async () => {
     evidenceMcp: true,
     extractedPluginMcp: true,
     targetFree: true,
-    targetLifecycle: true,
+    targetLifecycle: !ANDROID_ONLY,
     boundedRegexBridge: true,
     update,
     mcpStartup,

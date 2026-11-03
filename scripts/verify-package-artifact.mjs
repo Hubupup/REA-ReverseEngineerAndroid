@@ -3,8 +3,8 @@ import { isDeepStrictEqual } from "node:util";
 import { join } from "node:path";
 import { TextReader, Uint8ArrayWriter, ZipWriter } from "@zip.js/zip.js";
 
-/** Run artifact and JavaScript application analysis against packaged fixtures. */
-export async function verifyPackageArtifactAndElectron({
+/** Run artifact analysis against packaged fixtures without language-specific targets. */
+export async function verifyPackageArtifact({
   commands,
   cli,
   workspace,
@@ -16,13 +16,14 @@ export async function verifyPackageArtifactAndElectron({
     workspace,
     environment,
   });
-  await verifyPackagedElectronApplication({
-    commands,
-    cli,
-    workspace,
-    environment,
-  });
   return { artifactArchive };
+}
+
+/** Run artifact and JavaScript application analysis against packaged fixtures. */
+export async function verifyPackageArtifactAndElectron(arguments_) {
+  const result = await verifyPackageArtifact(arguments_);
+  await verifyPackagedElectronApplication(arguments_);
+  return result;
 }
 
 const verifyPackagedArtifact = async ({

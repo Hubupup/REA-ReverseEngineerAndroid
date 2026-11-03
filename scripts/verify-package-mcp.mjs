@@ -17,6 +17,8 @@ import * as prompts from "./verify-package-prompts.mjs";
 import { verifyCompleteToolCatalog } from "./lib/verify-package-core.mjs";
 import { withVerifierCleanup } from "./lib/verifier-cleanup.mjs";
 
+const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
+
 const verifyMcpToolsAndPrompts = async (client, mcpOptions) => {
   await verifyCompleteToolCatalog(client, mcpOptions);
   await prompts.verifyPromptCatalog(client, mcpOptions, prompts.names);
@@ -286,7 +288,7 @@ export async function verifyPackageMcp({
       await verifyMcpToolsAndPrompts(client, mcpOptions);
       await verifyMcpTargetFree(client, mcpOptions);
       await verifyMcpUnknownProvider(client, mcpOptions);
-      await verifyMcpBinaryLifecycle(client, mcpOptions);
+      if (!ANDROID_ONLY) await verifyMcpBinaryLifecycle(client, mcpOptions);
       await verifyMcpInlineArtifactEvidence(
         client,
         mcpOptions,
