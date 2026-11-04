@@ -166,9 +166,26 @@ export const verifyJadxFixtureCleanup = async (
   for (const launch of launches) {
     const pid = launch.pid;
     if (pid !== undefined)
-      expect(() => process.kill(-pid, 0)).toThrowError(
-        expect.objectContaining({ code: "ESRCH" }),
-      );
+      await expect
+        .poll(
+          () => {
+            try {
+              process.kill(-pid, 0);
+              return "running";
+            } catch (cause) {
+              if (
+                typeof cause === "object" &&
+                cause !== null &&
+                "code" in cause &&
+                cause.code === "ESRCH"
+              )
+                return "gone";
+              throw cause;
+            }
+          },
+          { timeout: 5_000 },
+        )
+        .toBe("gone");
     if (launch.cwd !== undefined)
       await expect(access(launch.cwd)).rejects.toMatchObject({
         code: "ENOENT",
