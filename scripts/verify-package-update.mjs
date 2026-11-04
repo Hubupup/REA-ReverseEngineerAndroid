@@ -6,7 +6,12 @@ import { pathToFileURL } from "node:url";
 
 import { withVerifierCleanup } from "./lib/verifier-cleanup.mjs";
 
-/** Exercise the packaged updater with real npm and a local release registry fixture. */
+const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
+
+/**
+ * Verify packaged update behavior. Android builds validate the public
+ * source-managed update surface; other builds exercise the npm updater fixture.
+ */
 export async function verifyPackageUpdate({
   prefix,
   packageRoot,
@@ -17,8 +22,45 @@ export async function verifyPackageUpdate({
 }) {
   const metadataPath = join(packageRoot, "package.json");
   const metadata = JSON.parse(await readFile(metadataPath, "utf8"));
-  const archive = await readFile(tarball);
   const entry = join(packageRoot, "scripts", "rea.mjs");
+
+  if (ANDROID_ONLY) {
+    const home = join(workspace, "update-home");
+    const runtimeEnvironment = {
+      ...environment,
+      HOME: home,
+      USERPROFILE: home,
+      APPDATA: join(home, "AppData", "Roaming"),
+      LOCALAPPDATA: join(home, "AppData", "Local"),
+      npm_config_prefix: prefix,
+    };
+    const result = JSON.parse(
+      (
+        await commands.exec(process.execPath, [entry, "update", "--json"], {
+          env: runtimeEnvironment,
+          cwd: workspace,
+          diagnosticBytes: 1024 * 1024,
+        })
+      ).stdout,
+    );
+    if (
+      result.status !== "source_managed" ||
+      result.current_version !== metadata.version ||
+      typeof result.message !== "string" ||
+      !result.message.includes("local fork") ||
+      !result.message.includes("npm run build:cached")
+    )
+      throw new Error(
+        `Android source-managed update did not match its public contract: ${JSON.stringify(result)}`,
+      );
+    return {
+      installed_version: metadata.version,
+      source_managed: true,
+      update_applied: false,
+    };
+  }
+
+  const archive = await readFile(tarball);
   const home = join(workspace, "update-home");
   const codexPath = join(home, ".codex", "config.toml");
   const originalConfig =

@@ -180,6 +180,12 @@ export const ANDROID_TEST_EXCLUDES = {
     "tests/acceptance/sqliteDatabaseCli.test.ts",
   ],
   adapters: [
+    "src/cliBundleResource.test.ts",
+    "src/doctorRuntime.test.ts",
+    "src/nativeDeadlineFlags.test.ts",
+    "src/server/BundleResourcesMcp.test.ts",
+    "src/server/JavaScriptRouteAdvertisedSchema.test.ts",
+    "src/server/registerGuidedWorkflowTool.test.ts",
     "src/artifacts/Asar*.test.ts",
     "src/artifacts/EspImageArtifactReader*.test.ts",
     "src/artifacts/FitArtifactReader.test.ts",
@@ -233,10 +239,19 @@ export const ANDROID_TEST_EXCLUDES = {
   ],
   conformance: [
     "tests/conformance/formats/mzPeAdmission.test.ts",
+    "tests/conformance/contracts/targetContentProvenance.test.ts",
     "tests/conformance/providers/hopper/**/*.test.ts",
     "tests/conformance/providers/managed/**/*.test.ts",
+    "tests/conformance/releaseConfiguration.test.ts",
   ],
   domain: [
+    "src/contracts/analysisDetail.test.ts",
+    "src/contracts/erlangBeamDeliveryContracts.test.ts",
+    "src/contracts/javascriptRouteDeliveryContracts.test.ts",
+    "src/contracts/pythonPycDeliveryContracts.test.ts",
+    "src/contracts/toolEffects.test.ts",
+    "src/contracts/toolInputReferences.test.ts",
+    "src/contracts/workflowInputContracts.test.ts",
     "src/domain/apple/**/*.test.ts",
     "src/domain/analysisView/WebNetwork*.test.ts",
     "src/domain/analysisView/gpuCodeObjectsView.test.ts",
@@ -267,6 +282,7 @@ export const ANDROID_TEST_EXCLUDES = {
   evaluation: [
     "tests/evaluation/model-evals/**/*.test.ts",
     "tests/evaluation/package/nativeAot*.test.ts",
+    "tests/evaluation/positionalToolContractRule.test.ts",
   ],
   services: [
     "src/application/Browser*.test.ts",
@@ -286,6 +302,8 @@ export const ANDROID_TEST_EXCLUDES = {
     "src/application/javascript/JavaScriptRecoveryService.test.ts",
     "src/application/javascript/JavaScriptRuntimeObservationService.test.ts",
     "src/application/managed/**/*.test.ts",
+    "src/application/CapabilityInventory.test.ts",
+    "src/application/sqlite/SqliteDatabaseCapability.test.ts",
     "src/application/wasm/**/*.test.ts",
   ],
   "mcp-boundary": [
