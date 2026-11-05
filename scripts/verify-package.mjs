@@ -5,7 +5,6 @@ import { join } from "node:path";
 import { TOOL_CONTRACTS } from "../dist/contracts/toolContracts.js";
 import { PRODUCT_IDENTITY } from "../dist/identity.js";
 import { resolveMcpStartupBudgets } from "../dist/config/mcpStartupBudgets.js";
-import * as prompts from "./verify-package-prompts.mjs";
 import {
   verifyPackageArtifact,
   verifyPackageArtifactAndElectron,
@@ -46,6 +45,7 @@ const referenceRoot = join(workspace, "reference-source");
 let tarball;
 let mcpStartup;
 let mcpModuleLoading;
+let mcpVerification;
 let update;
 let repositorySkill;
 let report;
@@ -277,14 +277,16 @@ await withVerifierCleanup(async () => {
   await commands.exec("tar", ["-xzf", tarball, "-C", extractedDirectory]);
   // Codex extracts npm plugins without installing dependencies. Run the real
   // catalog/Evidence workflow from that isolated tree so npm cannot repair it.
-  await runStage("extracted plugin MCP tools and evidence", () =>
-    verifyPackageMcp({
-      commands,
-      cli: join(extractedDirectory, "package", "scripts", "rea.mjs"),
-      environment: environmentData.environment,
-      evidenceRoot,
-      artifactArchive,
-    }),
+  mcpVerification = await runStage(
+    "extracted plugin MCP tools and evidence",
+    () =>
+      verifyPackageMcp({
+        commands,
+        cli: join(extractedDirectory, "package", "scripts", "rea.mjs"),
+        environment: environmentData.environment,
+        evidenceRoot,
+        artifactArchive,
+      }),
   );
   report = {
     cli: true,
@@ -313,9 +315,9 @@ await withVerifierCleanup(async () => {
     skillReferences: setupSupport.supportedSetupHost,
     repositorySkill,
     mcpTools: TOOL_CONTRACTS.length,
-    mcpPrompts: prompts.names.length,
-    promptCompletion: true,
-    promptCompletionLifecycle: true,
+    mcpPrompts: mcpVerification.mcpPrompts,
+    promptCompletion: mcpVerification.promptCompletion,
+    promptCompletionLifecycle: mcpVerification.promptCompletionLifecycle,
     evidenceMcp: true,
     extractedPluginMcp: true,
     targetFree: true,

@@ -9,13 +9,21 @@ export const mcpText = (result) => {
   return value;
 };
 
-/** Verify packaged prompt discovery and rendering through the public client. */
-export const verifyPromptCatalog = async (client, options, expectedNames) => {
+/** Observe the prompt inventory advertised by the running package. */
+export const promptNames = async (client, options) => {
   const prompts = await client.listPrompts(undefined, options);
-  if (
-    JSON.stringify(prompts.prompts.map(({ name }) => name)) !==
-    JSON.stringify(expectedNames)
-  )
+  return prompts.prompts.map(({ name }) => name);
+};
+
+/** Verify packaged prompt discovery and rendering through the public client. */
+export const verifyPromptCatalog = async (
+  client,
+  options,
+  expectedNames,
+  observedNames,
+) => {
+  const names = observedNames ?? (await promptNames(client, options));
+  if (JSON.stringify(names) !== JSON.stringify(expectedNames))
     throw new Error("packaged MCP prompt inventory diverged from contracts");
   const guided = await client.getPrompt(
     {

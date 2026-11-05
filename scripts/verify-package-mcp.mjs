@@ -19,10 +19,35 @@ import { withVerifierCleanup } from "./lib/verifier-cleanup.mjs";
 
 const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
 
+export const verifyMcpPromptSurface = async (
+  client,
+  mcpOptions,
+  androidOnly = ANDROID_ONLY,
+) => {
+  const observedPromptNames = await prompts.promptNames(client, mcpOptions);
+  if (androidOnly)
+    return {
+      mcpPrompts: observedPromptNames.length,
+      promptCompletion: false,
+      promptCompletionLifecycle: false,
+    };
+  await prompts.verifyPromptCatalog(
+    client,
+    mcpOptions,
+    prompts.names,
+    observedPromptNames,
+  );
+  await prompts.verifyPromptCompletion(client, mcpOptions, []);
+  return {
+    mcpPrompts: observedPromptNames.length,
+    promptCompletion: true,
+    promptCompletionLifecycle: true,
+  };
+};
+
 const verifyMcpToolsAndPrompts = async (client, mcpOptions) => {
   await verifyCompleteToolCatalog(client, mcpOptions);
-  await prompts.verifyPromptCatalog(client, mcpOptions, prompts.names);
-  await prompts.verifyPromptCompletion(client, mcpOptions, []);
+  return verifyMcpPromptSurface(client, mcpOptions);
 };
 
 const verifyMcpTargetFree = async (client, mcpOptions) => {
@@ -281,11 +306,12 @@ export async function verifyPackageMcp({
     mcpStderr += chunk.toString();
   });
   const client = new Client({ name: "package-smoke", version: "1.0.0" });
+  let verification;
   await withVerifierCleanup(async () => {
     try {
       await client.connect(transport);
       const mcpOptions = { timeout: 15_000 };
-      await verifyMcpToolsAndPrompts(client, mcpOptions);
+      verification = await verifyMcpToolsAndPrompts(client, mcpOptions);
       await verifyMcpTargetFree(client, mcpOptions);
       await verifyMcpUnknownProvider(client, mcpOptions);
       if (!ANDROID_ONLY) await verifyMcpBinaryLifecycle(client, mcpOptions);
@@ -316,4 +342,5 @@ export async function verifyPackageMcp({
       }
     },
   ]);
+  return verification;
 }
