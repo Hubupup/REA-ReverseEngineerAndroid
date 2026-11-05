@@ -132,6 +132,7 @@ export const ANDROID_TEST_INCLUDES = {
     "tests/boundary/process/jadx*.test.ts",
     "tests/boundary/process/nativeVerifier*.test.ts",
     "tests/boundary/process/owned*.test.ts",
+    "tests/boundary/process/packageMcpTargetFree.test.ts",
     "tests/boundary/process/packageNpmInvocation.test.ts",
     "tests/boundary/process/packagePackIsolation.test.ts",
     "tests/boundary/process/packageSetupTerminalOwnership.test.ts",

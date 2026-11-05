@@ -50,12 +50,19 @@ const verifyMcpToolsAndPrompts = async (client, mcpOptions) => {
   return verifyMcpPromptSurface(client, mcpOptions);
 };
 
-const verifyMcpTargetFree = async (client, mcpOptions) => {
+export const verifyMcpTargetFree = async (
+  client,
+  mcpOptions,
+  androidOnly = ANDROID_ONLY,
+) => {
   const result = await client.callTool(
     { name: "binary_session", arguments: {} },
     mcpOptions,
   );
   const status = requireMcpLifecycleResult(result, "binary_session");
+  if (!Array.isArray(status.tool_availability))
+    throw new Error("packaged target-free MCP omitted tool availability");
+  if (androidOnly) return;
   const currentDocument = status.tool_availability.find(
     ({ name }) => name === "current_document",
   );
