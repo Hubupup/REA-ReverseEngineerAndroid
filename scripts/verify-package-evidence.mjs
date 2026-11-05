@@ -3,7 +3,9 @@ import { join } from "node:path";
 
 import { createEvidence } from "../dist/domain/evidence.js";
 
-/** Round-trip historical reference import and evidence bundles. */
+const ANDROID_ONLY = process.env.REA_ANDROID_ONLY === "1";
+
+/** Round-trip Evidence bundles; full builds also exercise reference import. */
 export async function verifyPackageEvidence({
   commands,
   cli,
@@ -11,20 +13,22 @@ export async function verifyPackageEvidence({
   referenceRoot,
   environment,
 }) {
-  const referenceImport = JSON.parse(
-    await commands.run(
-      cli,
-      ["import-reference-source", referenceRoot, "--json"],
-      environment,
-    ),
-  );
-  if (
-    referenceImport.authority !== "historical-reference" ||
-    referenceImport.root_alias !== "$REFERENCE_ROOT" ||
-    referenceImport.relationships?.[0]?.resolution !== "internal" ||
-    JSON.stringify(referenceImport).includes("PACKAGE_SECRET_SENTINEL")
-  )
-    throw new Error("packaged historical reference import CLI failed");
+  if (!ANDROID_ONLY) {
+    const referenceImport = JSON.parse(
+      await commands.run(
+        cli,
+        ["import-reference-source", referenceRoot, "--json"],
+        environment,
+      ),
+    );
+    if (
+      referenceImport.authority !== "historical-reference" ||
+      referenceImport.root_alias !== "$REFERENCE_ROOT" ||
+      referenceImport.relationships?.[0]?.resolution !== "internal" ||
+      JSON.stringify(referenceImport).includes("PACKAGE_SECRET_SENTINEL")
+    )
+      throw new Error("packaged historical reference import CLI failed");
+  }
   const { createEvidenceBundle, serializeEvidenceBundle } = await import(
     new URL("../dist/domain/evidenceBundle.js", import.meta.url)
   );
