@@ -208,7 +208,11 @@ const verifyMcpInlineArtifactEvidence = async (
       { name: "inspect_artifact", arguments: {} },
       mcpOptions,
     );
-    assert.notEqual(inspected.structuredContent, undefined);
+    assert.notEqual(
+      inspected.structuredContent,
+      undefined,
+      prompts.mcpText(inspected),
+    );
     const source = parseEvidence(
       requireMcpOutput(inspected, "inspect_artifact"),
     );
@@ -222,7 +226,11 @@ const verifyMcpInlineArtifactEvidence = async (
       },
       mcpOptions,
     );
-    assert.notEqual(compared.structuredContent, undefined);
+    assert.notEqual(
+      compared.structuredContent,
+      undefined,
+      prompts.mcpText(compared),
+    );
     const comparison = parseEvidence(
       requireMcpOutput(compared, "compare_artifacts"),
     );
@@ -248,7 +256,11 @@ const verifyMcpInlineArtifactEvidence = async (
       { name: "extract_artifact", arguments: {} },
       mcpOptions,
     );
-    assert.notEqual(extracted.structuredContent, undefined);
+    assert.notEqual(
+      extracted.structuredContent,
+      undefined,
+      prompts.mcpText(extracted),
+    );
     const extraction = parseEvidence(
       requireMcpOutput(extracted, "extract_artifact"),
     );
